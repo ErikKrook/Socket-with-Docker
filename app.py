@@ -1,1 +1,0 @@
-print("Hej, världen! Jag kör i en Docker-container!")

@@ -1,7 +1,26 @@
 version: "3.8"
 
 services:
-  app:
+  producer:
     build:
       context: .
-    container_name: simple-python-app
+    container_name: producer
+    command: python producer.py
+    depends_on:
+      - consumer
+    networks:
+      - interaction-network
+  
+  consumer:
+    build:
+      context: .
+      container_name: consumer
+      command: python consumer.py
+      ports: 
+       - "5000:5000"
+      networks: 
+       - interaction-network
+
+networks:
+  interaction-network:
+
