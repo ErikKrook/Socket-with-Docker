@@ -10,17 +10,16 @@ services:
       - consumer
     networks:
       - interaction-network
-  
+
   consumer:
     build:
       context: .
-      container_name: consumer
-      command: python consumer.py
-      ports: 
-       - "5000:5000"
-      networks: 
-       - interaction-network
+    container_name: consumer
+    command: python consumer.py
+    ports:
+      - "5000:5000"
+    networks:
+      - interaction-network
 
 networks:
   interaction-network:
-
