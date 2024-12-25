@@ -1,36 +1,22 @@
 import socket
 
+HOST = "0.0.0.0"  # Bind to all network interfaces
+PORT = 5000       # Must match the client's PORT
 
-def server_program():
-    # get the hostname
-    host = "server"
-    port = 5000  # initiate port no above 1024
-    print(f"Server hostname: {host}")
-    print(f"Server port: {port}")
+def main():
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.bind((HOST, PORT))  # Bind the server to the specified host and port
+        s.listen()            # Listen for incoming connections
+        print(f"Server is listening on {HOST}:{PORT}")
+        
+        conn, addr = s.accept()  # Accept a client connection
+        with conn:
+            print(f"Connected by {addr}")
+            while True:
+                data = conn.recv(1024)  # Receive up to 1024 bytes
+                if not data:
+                    break  # Break the loop if no more data is received
+                print(f"Consumer: Received {data.decode('utf-8')}")
 
-    server_socket = socket.socket()  # get instance
-    print("Server Socker created")
-    # look closely. The bind() function takes tuple as argument
-    server_socket.bind((host, port))  # bind host address and port together
-    print(f"Server Bound to {host}:{port}")
-
-    # configure how many client the server can listen simultaneously
-    server_socket.listen(1)
-    print("Server is listening for incoming connections...")
-    conn, address = server_socket.accept()  # accept new connection
-    print("Connection establish: " + str(address))
-    while True:
-        # receive data stream. it won't accept data packet greater than 1024 bytes
-        data = conn.recv(1024).decode()
-        if not data:
-            # if data is not received break
-            break
-        print("from connected user: " + str(data))
-        data = input(' -> ')
-        conn.send(data.encode())  # send data to the client
-
-    conn.close()  # close the connection
-
-
-if __name__ == '__main__':
-    server_program()
+if __name__ == "__main__":
+    main()
