@@ -2,7 +2,7 @@ import socket
 import time
 
 def client_program():
-    host = socket.gethostname()  # as both code is running on same pc
+    host = "server"  # as both code is running on same pc
     print(f"Client hostname: {host}")
     port = 5000  # socket server port number
     print(f"Connecting to Server at {host}:{port}")
@@ -10,15 +10,16 @@ def client_program():
     client_socket = socket.socket()  # instantiate
     print("Client socket created")
 
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        while True:
-            try:
-                s.connect((host, port))
-                print("Client: Connected to the server established")
-                break
-            except ConnectionRefusedError:
-                print("Waiting for consumer to be ready...")
-                time.sleep(1)
+    while True:
+        try:
+            client_socket.connect((host, port))
+            break
+        except ConnectionRefusedError:
+            print("Waiting for server to be ready...")
+            time.sleep(1)
+
+    client_socket.connect((host, port))  # connect to the server
+    print("Client: Connected to the server established")
     
     message = input("Input: ")  # take input
 
