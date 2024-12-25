@@ -8,4 +8,4 @@ WORKDIR /app
 COPY . .
 
 # Starta programmet
-CMD ["python", "producer.py"]
+CMD ["python", "socket_server.py"]
