@@ -12,7 +12,7 @@ def client_program():
 
     while True:
         try:
-            client_program.connect((host, port))
+            client_socket.connect((host, port))
             break
         except ConnectionRefusedError:
             print("Waiting for server to be ready...")
