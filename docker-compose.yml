@@ -6,16 +6,16 @@ services:
       context: .
     container_name: socket_server
     command: python socket_server.py
-    depends_on:
-      - socket_client
     networks:
       - interaction-network
 
-  consumer:
+  socket_client:
     build:
       context: .
     container_name: socket_client
     command: python socket_client.py
+    depends_on:
+      - socket_server
     ports:
       - "5000:5000"
     networks:

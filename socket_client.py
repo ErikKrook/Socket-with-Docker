@@ -1,5 +1,5 @@
 import socket
-
+import time
 
 def client_program():
     host = socket.gethostname()  # as both code is running on same pc
@@ -9,6 +9,15 @@ def client_program():
     
     client_socket = socket.socket()  # instantiate
     print("Client socket created")
+
+    while True:
+        try:
+            client_program.connect((host, port))
+            break
+        except ConnectionRefusedError:
+            print("Waiting for server to be ready...")
+            time.sleep(1)
+
     client_socket.connect((host, port))  # connect to the server
     print("Client: Connected to the server established")
     
