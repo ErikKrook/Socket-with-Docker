@@ -3,8 +3,10 @@ import socket
 HOST = "0.0.0.0"  # Bind to all network interfaces
 PORT = 5000       # Must match the client's PORT
 
+print(f"host and port server {HOST}, {PORT}")
+
 def main():
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    with socket.socket() as s:
         s.bind((HOST, PORT))  # Bind the server to the specified host and port
         s.listen()            # Listen for incoming connections
         print(f"Server is listening on {HOST}:{PORT}")

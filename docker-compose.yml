@@ -4,7 +4,7 @@ services:
   producer:
     build:
       context: .
-    container_name: producer
+    container_name: Producer
     command: python producer.py
     depends_on:
       - consumer
@@ -14,7 +14,7 @@ services:
   consumer:
     build:
       context: .
-    container_name: consumer
+    container_name: Consumer
     command: python consumer.py
     ports:
       - "5000:5000"
