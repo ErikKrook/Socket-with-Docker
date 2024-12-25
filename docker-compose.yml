@@ -1,25 +1,25 @@
 version: "3.8"
 
 services:
-  socket_server:
+  producer:
     build:
       context: .
-    container_name: socket_server
-    command: python socket_server.py
-    networks:
-      - interaction-network
-
-  socket_client:
-    build:
-      context: .
-    container_name: socket_client
-    command: python socket_client.py
+    container_name: producer
+    command: python producer.py
     depends_on:
-      - socket_server
-    ports:
-      - "5000:5000"
+      - consumer
     networks:
       - interaction-network
+  
+  consumer:
+    build:
+      context: .
+      container_name: consumer
+      command: python consumer.py
+      ports: 
+       - "5000:5000"
+      networks: 
+       - interaction-network
 
 networks:
   interaction-network:
