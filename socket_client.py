@@ -1,10 +1,10 @@
 import socket
 import time
 
-HOST = "consumer"  # Docker Compose service name
+HOST = "server"  # Docker Compose service name
 PORT = 5000
 
-
+print(f"Host and Port client {HOST} : {PORT}")
 
 def main():
     with socket.socket() as s:
@@ -18,7 +18,7 @@ def main():
                 time.sleep(1)
         
         for i in range(1, 6):
-            message = f"Message {i}"
+            message = f"Message: {i}"
             print(f"Producer: Sending {message}")
             s.sendall(message.encode('utf-8'))
             time.sleep(1)  # Simulate some delay
