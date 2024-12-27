@@ -3,7 +3,7 @@ import socket
 HOST = "0.0.0.0"  # Bind to all network interfaces
 PORT = 5000       # Must match the client's PORT
 
-print(f"host and port server {HOST}, {PORT}")
+print(f"host and port server {HOST}:{PORT}")
 
 def main():
     with socket.socket() as s:

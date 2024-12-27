@@ -1,6 +1,8 @@
 # LearnDocker
-testing and learning basic docker
 
-run with 
+This project serves as my introduction to Docker and Web sockets. Here, I explore the basics of containerization, message exchange between containers via TCP, and orchestration using Docker Compose.
 
+To run the project, simply execute:
+
+```bash
 docker-compose up

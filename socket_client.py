@@ -4,7 +4,7 @@ import time
 HOST = "server"  # Docker Compose service name
 PORT = 5000
 
-print(f"Host and Port client {HOST} : {PORT}")
+print(f"Host and Port client {HOST}:{PORT}")
 
 def main():
     with socket.socket() as s:
