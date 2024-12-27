@@ -5,4 +5,9 @@ This project serves as my introduction to Docker and Web sockets. Here, I explor
 To run the project, simply execute:
 
 ```bash
-docker-compose up
+docker-compose up # starting up the containers
+
+docker-compose down # shuting down the containers
+
+docker-compose restart # restart the container (same as runing docker-compose down and then docker-compose up)
+
